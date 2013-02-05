@@ -12,6 +12,7 @@
 {
     NSMutableDictionary *formatters;
     NSArray *locales;
+    NSDateFormatter *currentFormatter;
 } 
 
 @end
@@ -35,6 +36,9 @@
     }
     
     locales = [[formatters allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    currentFormatter = [[NSDateFormatter alloc] init];
+    currentFormatter.locale = [NSLocale currentLocale];
 }
 
 - (NSString*)formattedTextForLocale:(NSString*)locale
@@ -45,6 +49,11 @@
 
     return [formatter stringFromDate:[NSDate date]];
 }
+- (NSString*)formattedTextForCurrentLocale
+{
+    currentFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:_textField.text options:0 locale:currentFormatter.locale];
+    
+    return [currentFormatter stringFromDate:[NSDate date]];
 }
 
 - (void)didReceiveMemoryWarning
