@@ -134,7 +134,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
-				ORGANIZATIONNAME = "Agustin De Cabrera";
+				ORGANIZATIONNAME = R/GA;
 			};
 			buildConfigurationList = E3A09C0916C1566B00B4BE57 /* Build configuration list for PBXProject "Localizer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -292,6 +292,7 @@
 				E3A09C3516C1566B00B4BE57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
