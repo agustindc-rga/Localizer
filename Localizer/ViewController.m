@@ -25,14 +25,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     formatters = [NSMutableDictionary dictionary];
     
 //    NSArray *availableLocales = [NSLocale availableLocaleIdentifiers];
     NSArray *availableLocales = @[@"en_US", @"en_GB", @"fr_CA", @"fr_FR"];
+//    NSArray *acceptedPrefixes = @[@"en", @"fr", @"es", @"pt"];
     
     for (NSString *locale in availableLocales) {
+        
+//        BOOL acceptedLocale = NO;
+//        for (NSString *prefix in acceptedPrefixes) {
+//            if ([locale hasPrefix:prefix]) {
+//                acceptedLocale = YES;
+//                break;
+//            }
+//        }
+//        
+//        if (!acceptedLocale)
+//            continue;
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:locale];
         formatters[locale] = formatter;
