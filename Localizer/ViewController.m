@@ -13,6 +13,9 @@
     NSMutableDictionary *formatters;
     NSArray *locales;
     NSDateFormatter *currentFormatter;
+    
+    IBOutlet UITextField *_textField;
+    IBOutlet UITableView *_tableView;
 } 
 
 @end
@@ -56,10 +59,46 @@
     return [currentFormatter stringFromDate:[NSDate date]];
 }
 
-- (void)didReceiveMemoryWarning
+-(IBAction)buttonTapped:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.view endEditing:YES];
+    [_tableView reloadData];
 }
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return section == 0? 1 : [locales count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *const CellIdentifier = @"localeCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    if (indexPath.section == 0) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"current: %@", currentFormatter.locale.localeIdentifier];
+        cell.textLabel.text = [self formattedTextForCurrentLocale];
+    }
+    else {
+        cell.detailTextLabel.text = locales[indexPath.row];
+        cell.textLabel.text = [self formattedTextForLocale:locales[indexPath.row]];
+    }
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
 
 @end
