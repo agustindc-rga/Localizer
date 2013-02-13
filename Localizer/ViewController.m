@@ -29,8 +29,8 @@
     formatters = [NSMutableDictionary dictionary];
     
 //    NSArray *availableLocales = [NSLocale availableLocaleIdentifiers];
-    NSArray *availableLocales = @[@"en_US", @"en_GB", @"fr_CA", @"fr_FR"];
-//    NSArray *acceptedPrefixes = @[@"en", @"fr", @"es", @"pt"];
+    NSArray *availableLocales = @[@"en_US", @"en_GB", @"fr_CA", @"fr_FR", @"zh"];
+//    NSArray *acceptedPrefixes = @[@"en", @"fr", @"zh"];
     
     for (NSString *locale in availableLocales) {
         
